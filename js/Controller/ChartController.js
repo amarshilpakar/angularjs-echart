@@ -1,4 +1,4 @@
-app.controller('chartController', ['$scope', function ($scope) {
+app.controller('chartController', ['$scope', '$aside', function ($scope, $aside) {
   $scope.data = {
     color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
     title: {
@@ -181,4 +181,25 @@ app.controller('chartController', ['$scope', function ($scope) {
       }
     ]
   };
-}])
+  
+  var aside = $aside({
+    templateUrl: 'views/aside.html',
+    show: false,
+    title: 'Title',
+    content: 'This is content on aside',
+    controller: 'asideCtrl',
+    placement: 'left',
+    animation: 'am-slide-left'
+  });
+  $scope.showAside = function() {
+    aside.$promise.then(aside.show);
+  };
+  $scope.hideModal = function() {
+    aside.$promise.then(aside.hide);
+  };
+
+}]);
+
+app.controller('asideCtrl', function($scope) {
+  $scope.content = "Content from isolate scope";
+});
