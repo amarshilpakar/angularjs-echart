@@ -181,15 +181,15 @@ app.controller('chartController', ['$scope', '$aside', function ($scope, $aside)
       }
     ]
   };
-  
+  $scope.title = "Title from chart controller";
+  $scope.content = "Content from chart controller";
   var aside = $aside({
     templateUrl: 'views/aside.html',
     show: false,
-    title: 'Title',
-    content: 'This is content on aside',
     controller: 'asideCtrl',
     placement: 'left',
-    animation: 'am-slide-left'
+    animation: 'am-slide-left',
+    scope: $scope
   });
   $scope.showAside = function() {
     aside.$promise.then(aside.show);
@@ -201,5 +201,4 @@ app.controller('chartController', ['$scope', '$aside', function ($scope, $aside)
 }]);
 
 app.controller('asideCtrl', function($scope) {
-  $scope.content = "Content from isolate scope";
 });
