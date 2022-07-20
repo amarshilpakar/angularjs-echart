@@ -1,15 +1,17 @@
 app.directive('echarts', function () {
   return {
     restrict: 'E',
+    scope: {
+      option: '='
+    },
     link: function (scope, element, attrs) {   
-      scope.$watch(attrs.data, function() {
-        var option = scope.$eval(attrs.option);
+      scope.$watch('option', function(newValue, oldValue) {
         var echart = echarts.init(element[0], null, {
           renderer: 'canvas',
           useDirtyRect: false
         });
-        if (option && typeof option === 'object') {
-          echart.setOption(option);
+        if (newValue && typeof newValue === 'object') {
+          echart.setOption(newValue);
         }
         window.addEventListener('resize', echart.resize);
       });
