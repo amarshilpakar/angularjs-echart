@@ -210,7 +210,6 @@ app.controller('chartController', ['$scope', '$aside', '$q', '$http', '$timeout'
   var aside = $aside({
     templateUrl: 'views/aside.html',
     show: false,
-    controller: 'asideCtrl',
     placement: 'left',
     animation: 'am-slide-left',
     scope: $scope
@@ -353,6 +352,3 @@ app.controller('chartController', ['$scope', '$aside', '$q', '$http', '$timeout'
   }
   $scope.getData();
 }]);
-
-app.controller('asideCtrl', function ($scope) {
-});
